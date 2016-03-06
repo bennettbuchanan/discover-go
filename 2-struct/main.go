@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 )
 
@@ -17,14 +18,19 @@ func (u *user) sayHello() {
 
 func (u *user) sayHistory() {
 
-	layout := "January 2, 2006"
-	t, _ := time.Parse(layout, u.DOB)
-	bettyYear := t.Year()
 	now := time.Now()
-	thisYear := now.Year()
-	bettyAge := thisYear - bettyYear
+	nowFormatted := now.Format("20060102")
+	birthday, _ := time.Parse("January 2, 2006", u.DOB)
+	birthdayParsed := birthday.Format("20060102")
+	x, err := strconv.Atoi(nowFormatted)
+	y, err := strconv.Atoi(birthdayParsed)
+	if err != nil {
+		fmt.Println("error")
+	}
 
-	fmt.Printf("%s who was born in %s would be... The current date: %d Holberton's birthdate: %d.\n", u.Name, u.City, thisYear, bettyAge)
+	currentAge := (x - y) / 10000
+
+	fmt.Printf("%s who was born in %s would be %d years old today.\n", u.Name, u.City, currentAge)
 }
 
 func main() {
