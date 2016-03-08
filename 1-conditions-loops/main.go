@@ -3,12 +3,10 @@ package main
 import (
 	"fmt"
 	"math/rand"
-	"time"
 )
 
 func main() {
-	seed := rand.New(rand.NewSource(time.Now().UnixNano()))
-	randomNumber := seed.Intn(100)
+	randomNumber := rand.Intn(100)
 	school := "Holberton School"
 	beautifulWeather := true
 	holbertonFounders := []string{"Rudy Rigot", "Sylvain Kalache", "Julien Barbier"}
